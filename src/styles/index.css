@@ -14,6 +14,9 @@
     body {
         @apply bg-background text-content;
     }
+    h2 {
+        @apply text-4xl font-semibold;
+    }
     h3 {
         @apply text-2xl font-semibold;
     }

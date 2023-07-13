@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { CgClose, CgMenuRight } from 'react-icons/cg';
 import { Button, IconButton, MobileNav, Navbar as MTNavbar } from '@material-tailwind/react';
@@ -11,6 +11,21 @@ export default function Navbar() {
         window.addEventListener('resize', () => window.innerWidth >= 960 && setOpenNav(false));
     }, []);
 
+    const navLink = ({ isActive }: { isActive: boolean }) => (isActive ? 'font-medium underline' : '');
+    const NavList = (
+        <div className="my-4 flex flex-col gap-2 lg:my-0 lg:flex-row lg:items-center lg:gap-6">
+            <NavLink to="/" className={navLink} end>
+                Home
+            </NavLink>
+            <NavLink to="/all-books" className={navLink}>
+                All Books
+            </NavLink>
+            <NavLink to="/add-book" className={navLink}>
+                Add Book
+            </NavLink>
+        </div>
+    );
+
     return (
         <MTNavbar fullWidth shadow className="sticky top-0 z-10">
             <div className="container mx-auto flex items-center justify-between">
@@ -18,7 +33,7 @@ export default function Navbar() {
                     <img src={Logo} alt="logo" className="w-40" />
                 </Link>
                 <div className="flex items-center gap-4">
-                    <div className="mr-4 hidden lg:block">{/* {NavList} */}</div>
+                    <div className="mr-4 hidden lg:block">{NavList}</div>
                     <Link to="/login" className="hidden lg:block">
                         <Button size="sm">Login / Signup</Button>
                     </Link>
@@ -28,10 +43,10 @@ export default function Navbar() {
                 </div>
             </div>
             <MobileNav open={openNav}>
-                {/* {NavList} */}
-                <Button size="sm" fullWidth>
-                    <span>Buy Now</span>
-                </Button>
+                {NavList}
+                <Link to="/login">
+                    <Button size="sm">Login / Signup</Button>
+                </Link>
             </MobileNav>
         </MTNavbar>
     );
