@@ -13,6 +13,7 @@ module.exports = withMT({
         },
         extend: {
             backgroundImage: {
+                auth: "url('/src/assets/auth-bg.jpg')",
                 'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
             },
             colors: {

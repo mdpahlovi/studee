@@ -12,16 +12,16 @@ export default function Navbar() {
     }, []);
 
     return (
-        <MTNavbar fullWidth={true} shadow={false} className="sticky top-0 z-10">
+        <MTNavbar fullWidth shadow className="sticky top-0 z-10">
             <div className="container mx-auto flex items-center justify-between">
                 <Link to="/">
                     <img src={Logo} alt="logo" className="w-40" />
                 </Link>
                 <div className="flex items-center gap-4">
                     <div className="mr-4 hidden lg:block">{/* {NavList} */}</div>
-                    <Button size="sm" className="hidden lg:block">
-                        <Link to="/login">Login / Signup</Link>
-                    </Button>
+                    <Link to="/login" className="hidden lg:block">
+                        <Button size="sm">Login / Signup</Button>
+                    </Link>
                     <IconButton ripple={false} onClick={() => setOpenNav(!openNav)} className="lg:hidden">
                         {openNav ? <CgClose size={20} /> : <CgMenuRight size={20} />}
                     </IconButton>

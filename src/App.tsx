@@ -21,7 +21,7 @@ export default function App() {
                     md: { fontSize: '', borderRadius: 'rounded-full' },
                     lg: { fontSize: '', borderRadius: 'rounded-full' },
                 },
-                variants: { outlined: { gray: { border: 'border', color: '' } } },
+                variants: { filled: { blue: { backgroud: 'bg-primary', hover: 'hover:shadow-md hover:shadow-primary/30', shadow: '' } } },
             },
         },
         iconButton: {
@@ -32,7 +32,27 @@ export default function App() {
                     md: { fontSize: '', borderRadius: 'rounded-full' },
                     lg: { fontSize: '', borderRadius: 'rounded-full' },
                 },
-                variants: { outlined: { gray: { border: 'border border-black', color: '' } } },
+                variants: { filled: { blue: { backgroud: 'bg-primary', hover: 'hover:shadow-md hover:shadow-primary/30', shadow: '' } } },
+            },
+        },
+        input: {
+            defaultProps: { size: 'lg' },
+            styles: {
+                base: { input: { color: '' }, label: { color: 'peer-placeholder-shown:text-content/70' } },
+                variants: {
+                    standard: {
+                        base: { input: { borderColor: 'placeholder-shown:border-edge' } },
+                        colors: {
+                            label: {
+                                blue: {
+                                    after: 'after:border-primary peer-focus:after:border-primary',
+                                    color: 'text-content/70 peer-focus:text-primary',
+                                },
+                            },
+                            input: { blue: { borderColor: 'border-content/70', borderColorFocused: 'focus:border-primary' } },
+                        },
+                    },
+                },
             },
         },
     };
