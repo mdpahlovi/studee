@@ -12,7 +12,7 @@ export default function Navbar() {
     }, []);
 
     return (
-        <MTNavbar fullWidth={true} className="sticky top-0 z-10 bg-black">
+        <MTNavbar fullWidth={true} shadow={false} className="sticky top-0 z-10">
             <div className="container mx-auto flex items-center justify-between">
                 <Link to="/">
                     <img src={Logo} alt="logo" className="w-40" />

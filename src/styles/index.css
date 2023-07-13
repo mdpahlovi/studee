@@ -1,3 +1,41 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    :root {
+        --primary: 91 114 242;
+        --secondary: 255 127 4;
+        --accent: 254 54 151;
+        --content: 255 255 255;
+        --background: 22 22 22;
+        --edge: 51 51 51;
+    }
+    body {
+        @apply bg-background text-content;
+    }
+
+    /* Scrollbar Styling */
+    ::-webkit-scrollbar {
+        @apply w-1.5;
+        @apply h-1.5;
+    }
+    ::-webkit-scrollbar-track {
+        @apply bg-content/10 rounded-full;
+        -webkit-border-radius: 8px;
+    }
+    ::-webkit-scrollbar-thumb {
+        @apply bg-gradient-to-bl from-primary via-secondary to-accent rounded-full;
+        -webkit-border-radius: 8px;
+    }
+}
+
+@layer components {
+    .border,
+    .border-t,
+    .border-b,
+    .border-l,
+    .border-r {
+        @apply border-edge;
+    }
+}

@@ -8,9 +8,9 @@ export default function App() {
             styles: {
                 base: {
                     mobileNav: { width: 'container mx-auto' },
-                    navbar: { fullWidth: { px: 'px-6 py-4' }, shadow: { boxShadow: 'shadow' } },
+                    navbar: { blurred: { borderColor: '', borderWidth: 'border-b' }, fullWidth: { px: 'px-6 py-4' } },
                 },
-                variants: { filled: { white: { color: '' } } },
+                variants: { filled: { white: { backgroud: '', color: '' } } },
             },
         },
         button: {
@@ -21,7 +21,7 @@ export default function App() {
                     md: { fontSize: '', borderRadius: 'rounded-full' },
                     lg: { fontSize: '', borderRadius: 'rounded-full' },
                 },
-                variants: { outlined: { gray: { border: 'border border-black', color: '' } } },
+                variants: { outlined: { gray: { border: 'border', color: '' } } },
             },
         },
         iconButton: {
