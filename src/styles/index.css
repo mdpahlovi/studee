@@ -14,11 +14,17 @@
     body {
         @apply bg-background text-content;
     }
+    h1 {
+        @apply font-bold text-[44px] leading-[48px] sm:text-6xl lg:text-5xl xl:text-6xl;
+    }
     h2 {
         @apply text-4xl font-semibold;
     }
     h3 {
         @apply text-2xl font-semibold;
+    }
+    p {
+        @apply opacity-75;
     }
     section {
         @apply container mx-auto px-6;

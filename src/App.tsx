@@ -7,12 +7,16 @@ export default function App() {
         navbar: {
             styles: {
                 base: {
-                    mobileNav: { width: 'container mx-auto' },
-                    navbar: { blurred: { borderColor: '', borderWidth: 'border-b' }, fullWidth: { px: 'px-6 py-4' } },
+                    navbar: {
+                        blurred: { borderColor: '', borderWidth: 'border-b' },
+                        fullWidth: { maxWidth: '', px: '', rounded: '', width: '' },
+                        initial: { borderRadius: '', display: '', maxWidth: '', px: '', width: '' },
+                    },
                 },
                 variants: { filled: { white: { backgroud: '', color: '' } } },
             },
         },
+        collapse: { styles: { base: { width: 'container mx-auto px-6' } } },
         button: {
             styles: {
                 base: { initial: { textTransform: '', fontWeight: '' } },
@@ -21,7 +25,17 @@ export default function App() {
                     md: { fontSize: '', borderRadius: 'rounded-full' },
                     lg: { fontSize: '', borderRadius: 'rounded-full' },
                 },
-                variants: { filled: { blue: { backgroud: 'bg-primary', hover: 'hover:shadow-md hover:shadow-primary/30', shadow: '' } } },
+                variants: {
+                    filled: { blue: { backgroud: 'bg-primary', hover: 'hover:shadow-md hover:shadow-primary/30', shadow: '' } },
+                    outlined: {
+                        blue: {
+                            border: 'border border-primary',
+                            color: 'text-primary',
+                            focus: '',
+                            hover: 'hover:bg-primary hover:text-white',
+                        },
+                    },
+                },
             },
         },
         iconButton: {

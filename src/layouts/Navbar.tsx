@@ -1,7 +1,7 @@
 import { Link, NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { CgClose, CgMenuRight } from 'react-icons/cg';
-import { Button, IconButton, MobileNav, Navbar as MTNavbar } from '@material-tailwind/react';
+import { Button, Collapse, IconButton, Navbar as MTNavbar } from '@material-tailwind/react';
 import Logo from '../assets/logo.png';
 
 export default function Navbar() {
@@ -28,7 +28,7 @@ export default function Navbar() {
 
     return (
         <MTNavbar fullWidth shadow className="sticky top-0 z-10">
-            <div className="container mx-auto flex items-center justify-between">
+            <section className="flex items-center justify-between">
                 <Link to="/">
                     <img src={Logo} alt="logo" className="w-40" />
                 </Link>
@@ -41,13 +41,13 @@ export default function Navbar() {
                         {openNav ? <CgClose size={20} /> : <CgMenuRight size={20} />}
                     </IconButton>
                 </div>
-            </div>
-            <MobileNav open={openNav}>
+            </section>
+            <Collapse open={openNav}>
                 {NavList}
-                <Link to="/login">
+                <Link to="/login" className="block mb-1.5">
                     <Button size="sm">Login / Signup</Button>
                 </Link>
-            </MobileNav>
+            </Collapse>
         </MTNavbar>
     );
 }

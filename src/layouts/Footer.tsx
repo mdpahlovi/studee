@@ -3,8 +3,8 @@ import Logo from '../assets/logo.png';
 
 export default function Footer() {
     return (
-        <footer className="border-t py-8 px-6">
-            <div className="container mx-auto flex flex-row flex-wrap items-center justify-center gap-y-6 gap-x-12 md:justify-between">
+        <footer className="border-t py-8">
+            <section className="flex flex-row flex-wrap items-center justify-center gap-y-6 gap-x-12 md:justify-between">
                 <Link to="/">
                     <img src={Logo} alt="logo" className="w-40" />
                 </Link>
@@ -22,8 +22,8 @@ export default function Footer() {
                         Contact Us
                     </Link>
                 </div>
-            </div>
-            <hr className="my-8 border" />
+            </section>
+            <hr className="m-8 border" />
             <p className="text-center">&copy; 2023 Material Tailwind</p>
         </footer>
     );
