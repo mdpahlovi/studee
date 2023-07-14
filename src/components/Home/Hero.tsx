@@ -16,8 +16,10 @@ export default function Hero() {
                         their hearts and pursue their true passions in life.
                     </p>
                     <div className="flex flex-wrap gap-6">
-                        <Button>Get Start</Button>
-                        <Button variant="outlined">See All Book</Button>
+                        <Button color="orange">Get Start</Button>
+                        <Button variant="outlined" color="orange">
+                            See All Book
+                        </Button>
                     </div>
                 </div>
                 <div className="hidden lg:block">

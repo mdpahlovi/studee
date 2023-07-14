@@ -26,13 +26,22 @@ export default function App() {
                     lg: { fontSize: '', borderRadius: 'rounded-full' },
                 },
                 variants: {
-                    filled: { blue: { backgroud: 'bg-primary', hover: 'hover:shadow-md hover:shadow-primary/30', shadow: '' } },
+                    filled: {
+                        blue: { backgroud: 'bg-primary', hover: 'hover:shadow-md hover:shadow-primary/30', shadow: '' },
+                        orange: { backgroud: 'bg-secondary', hover: 'hover:shadow-md hover:shadow-secondary/30', shadow: '' },
+                    },
                     outlined: {
                         blue: {
                             border: 'border border-primary',
                             color: 'text-primary',
                             focus: '',
                             hover: 'hover:bg-primary hover:text-white',
+                        },
+                        orange: {
+                            border: 'border border-secondary',
+                            color: 'text-secondary',
+                            focus: '',
+                            hover: 'hover:bg-secondary hover:text-white',
                         },
                     },
                 },
@@ -69,6 +78,7 @@ export default function App() {
                 },
             },
         },
+        card: { styles: { variants: { filled: { white: { backgroud: 'border', color: '' } } } } },
     };
     console.log(useTheme());
 

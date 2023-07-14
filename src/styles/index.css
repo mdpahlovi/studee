@@ -23,9 +23,6 @@
     h3 {
         @apply text-2xl font-semibold;
     }
-    p {
-        @apply opacity-75;
-    }
     section {
         @apply container mx-auto px-6;
     }
