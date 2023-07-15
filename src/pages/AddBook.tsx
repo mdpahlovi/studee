@@ -1,20 +1,40 @@
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
+import { useEffect } from 'react';
+import toast from 'react-hot-toast';
 import SectionHeader from '@/components/Common/SectionHeader';
+import { usePostBookMutation } from '@/redux/features/books/bookApi';
+import { useAppSelector } from '@/redux/hooks';
 import { IBook, IBookInput } from '@/types';
-import { Button, Input, Textarea } from '@material-tailwind/react';
+import { Button, Input, Spinner, Textarea } from '@material-tailwind/react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 export default function AddBook() {
     const { register, handleSubmit } = useForm<IBookInput>();
+    const { user } = useAppSelector(state => state.user);
+    const [postBook, { isLoading, isError, isSuccess, error }] = usePostBookMutation();
 
-    const handleAddBook: SubmitHandler<IBookInput> = ({ author1, author2, publisherName, ...bookData }) => {
+    const handleAddBook: SubmitHandler<IBookInput> = ({ author1, author2, publisherName, publicationYear, rating, price, ...bookData }) => {
         const newBook: IBook = {
             author: [author1, author2],
-            publisher: { name: publisherName, email: '' },
+            publicationYear: Number(publicationYear),
+            publisher: { name: publisherName, email: user?.email! },
             reviews: [],
+            rating: Number(rating),
+            price: Number(price),
             ...bookData,
         };
-        console.log(newBook);
+        postBook(newBook);
     };
+
+    useEffect(() => {
+        if (isSuccess) {
+            toast.success('Book Added Successfully');
+        } else if (isError) {
+            toast.error('Something Error!');
+        }
+    }, [isError, isSuccess]);
+
+    console.log(error);
 
     return (
         <>
@@ -44,8 +64,14 @@ export default function AddBook() {
                         <Input type="number" variant="standard" label="Price" {...register('price')} />
                     </div>
                     <Textarea variant="standard" label="Synopsis" {...register('synopsis')} />
-                    <Button type="submit" fullWidth>
-                        Submit
+                    <Button type="submit" fullWidth className="flex justify-center items-end gap-2" disabled={isLoading}>
+                        {isLoading ? (
+                            <>
+                                <Spinner /> Loading...
+                            </>
+                        ) : (
+                            'Submit'
+                        )}
                     </Button>
                 </form>
             </section>
