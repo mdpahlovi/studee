@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import BookCard from '@/components/Common/BookCard';
 import SectionHeader from '@/components/Common/SectionHeader';
 import { useGetBooksQuery } from '@/redux/features/books/bookApi';
@@ -6,9 +7,12 @@ import { Button, Input } from '@material-tailwind/react';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '@/redux/hooks';
+import FilterBookDrawer from '@/components/Common/FilterBookDrawer';
 
 export default function AllBooks() {
-    const { data, isLoading } = useGetBooksQuery(undefined);
+    const [query, setQuery] = useState('');
+    const [open, setOpen] = useState(false);
+    const { data, isLoading } = useGetBooksQuery(query, { refetchOnMountOrArgChange: true });
     const { user } = useAppSelector(state => state.user);
 
     return (
@@ -18,8 +22,17 @@ export default function AllBooks() {
             </div>
             <section className="my-16 sm:my-20">
                 <div className="flex justify-between mb-8 sm:mb-10">
-                    <div>
-                        <Input label="Search" icon={<MagnifyingGlassIcon className="w-5 h-5" />} />
+                    <div className="flex items-center gap-4">
+                        <div>
+                            <Button onClick={() => setOpen(true)} className="whitespace-nowrap">
+                                Filter Option
+                            </Button>
+                        </div>
+                        <Input
+                            label="Search"
+                            onChange={e => setQuery(e.target.value)}
+                            icon={<MagnifyingGlassIcon className="w-5 h-5 hover:text-primary cursor-pointer" />}
+                        />
                     </div>
                     {user?.email && (
                         <Link to="/add-book">
@@ -37,6 +50,7 @@ export default function AllBooks() {
                     </div>
                 )}
             </section>
+            <FilterBookDrawer open={open} setOpen={setOpen} />
         </>
     );
 }

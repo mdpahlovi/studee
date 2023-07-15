@@ -67,8 +67,23 @@ export default function App() {
         input: {
             defaultProps: { size: 'lg' },
             styles: {
-                base: { input: { color: '' }, label: { color: 'peer-placeholder-shown:text-content/70' } },
+                base: { icon: { color: '' }, input: { color: '' }, label: { color: 'peer-placeholder-shown:text-content/70' } },
                 variants: {
+                    outlined: {
+                        base: {
+                            input: { borderColor: 'placeholder-shown:border-edge placeholder-shown:border-t-edge' },
+                        },
+                        colors: {
+                            label: {
+                                blue: {
+                                    after: 'after:border-content/70 peer-focus:after:!border-primary',
+                                    before: 'before:border-content/70 peer-focus:before:!border-primary',
+                                    color: 'text-content/70 peer-focus:text-primary',
+                                },
+                            },
+                            input: { blue: { borderColor: 'border-content/70', borderColorFocused: 'focus:border-primary' } },
+                        },
+                    },
                     standard: {
                         base: { input: { borderColor: 'placeholder-shown:border-edge' } },
                         colors: {
@@ -128,6 +143,7 @@ export default function App() {
                 },
             },
         },
+        drawer: { styles: { base: { drawer: { backgroundColor: 'bg-background' } } } },
     };
     console.log(useTheme());
 
