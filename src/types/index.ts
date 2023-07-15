@@ -9,7 +9,7 @@ export interface IReview {
 }
 
 export interface IBook {
-    _id: string;
+    _id?: string;
     title: string;
     cover: string;
     author: string[];
@@ -27,4 +27,17 @@ export interface IApiResponse<T> {
     statusCode: number;
     message?: string | null;
     data?: T | null;
+}
+
+export interface IBookInput {
+    title: string;
+    cover: string;
+    author1: string;
+    author2: string;
+    genre: string;
+    publicationYear: number;
+    publisherName: string;
+    rating: number;
+    price: number;
+    synopsis: string;
 }

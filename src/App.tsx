@@ -78,6 +78,25 @@ export default function App() {
                 },
             },
         },
+        textarea: {
+            styles: {
+                base: { textarea: { color: '' }, label: { color: 'peer-placeholder-shown:text-content/70' } },
+                variants: {
+                    standard: {
+                        base: { textarea: { borderColor: 'placeholder-shown:border-edge' } },
+                        colors: {
+                            label: {
+                                blue: {
+                                    after: 'after:border-primary peer-focus:after:border-primary',
+                                    color: 'text-content/70 peer-focus:text-primary',
+                                },
+                            },
+                            textarea: { blue: { borderColor: 'border-content/70', borderColorFocused: 'focus:border-primary' } },
+                        },
+                    },
+                },
+            },
+        },
         card: { styles: { variants: { filled: { white: { backgroud: 'border', color: '' } } } } },
     };
     console.log(useTheme());

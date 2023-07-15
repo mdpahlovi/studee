@@ -1,6 +1,6 @@
 import { IBook } from '@/types';
 import { Link } from 'react-router-dom';
-import { Card, CardHeader, Button } from '@material-tailwind/react';
+import { Card, CardHeader, Button, Rating } from '@material-tailwind/react';
 import { ArrowLongRightIcon } from '@heroicons/react/24/outline';
 
 export default function BookCard({ book }: { book: IBook }) {
@@ -19,7 +19,9 @@ export default function BookCard({ book }: { book: IBook }) {
                     <p>Author : {...author}</p>
                     <p>Publication Year : {publicationYear}</p>
                     <p>Price : {price}$</p>
-                    <p>Rating : {rating}</p>
+                    <p className="flex flex-wrap items-center gap-1">
+                        Rating : <Rating value={Math.round(rating)} /> ({rating})
+                    </p>
                 </div>
                 <Link to={`/book/${_id}`}>
                     <Button className="mt-2 flex items-center gap-2">
