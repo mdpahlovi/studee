@@ -18,7 +18,14 @@ const bookApi = api.injectEndpoints({
                 body: data,
             }),
         }),
+        updateBook: builder.mutation({
+            query: ({ id, ...patch }) => ({
+                url: `/books/${id}`,
+                method: 'PATCH',
+                body: patch,
+            }),
+        }),
     }),
 });
 
-export const { useGetBooksQuery, useGetTenBookQuery, useSingleBookQuery, usePostBookMutation } = bookApi;
+export const { useGetBooksQuery, useGetTenBookQuery, useSingleBookQuery, usePostBookMutation, useUpdateBookMutation } = bookApi;
