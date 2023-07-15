@@ -20,6 +20,7 @@ export interface IBook {
     rating: number;
     price: number;
     synopsis: string;
+    createdAt: string;
 }
 
 export interface IApiResponse<T> {

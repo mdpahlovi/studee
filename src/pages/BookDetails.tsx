@@ -6,11 +6,17 @@ import { useAppSelector } from '@/redux/hooks';
 import { Rating, TimelineConnector, TimelineHeader, TimelineIcon, TimelineItem } from '@material-tailwind/react';
 import AddReview from '@/components/Common/AddReview';
 import { IReview } from '@/types';
+import { format, parseISO } from 'date-fns';
 
 export default function BookDetails() {
     const { id } = useParams();
     const { data, isLoading } = useSingleBookQuery(id);
     const { user } = useAppSelector(state => state.user);
+
+    let date;
+    if (!isLoading) {
+        date = format(parseISO(data?.data?.createdAt), 'PPP');
+    }
 
     return (
         <>
@@ -30,7 +36,7 @@ export default function BookDetails() {
                             <h3>{data?.data?.title}</h3>
                             <div>
                                 <p>Author : {...data?.data?.author}</p>
-                                <p>Publication Year : {data?.data?.publicationYear}</p>
+                                <p>Publication Date : {date}</p>
                                 <p>Price : {data?.data?.price}$</p>
                                 <p className="flex flex-wrap items-center gap-1">
                                     Rating : <Rating value={Math.round(data?.data?.rating)} /> ({data?.data?.rating})

@@ -2,9 +2,11 @@ import { IBook } from '@/types';
 import { Link } from 'react-router-dom';
 import { Card, CardHeader, Button, Rating } from '@material-tailwind/react';
 import { ArrowLongRightIcon } from '@heroicons/react/24/outline';
+import { format, parseISO } from 'date-fns';
 
 export default function BookCard({ book }: { book: IBook }) {
-    const { _id, cover, genre, title, synopsis, author, publicationYear, price, rating } = book;
+    const { _id, cover, genre, title, synopsis, author, createdAt, price, rating } = book;
+    const date = format(parseISO(createdAt), 'PPP');
 
     return (
         <Card className="sm:flex-row w-full">
@@ -17,7 +19,7 @@ export default function BookCard({ book }: { book: IBook }) {
                 <p className="line-clamp-2">{synopsis}</p>
                 <div>
                     <p>Author : {...author}</p>
-                    <p>Publication Year : {publicationYear}</p>
+                    <p>Publication Date : {date}</p>
                     <p>Price : {price}$</p>
                     <p className="flex flex-wrap items-center gap-1">
                         Rating : <Rating value={Math.round(rating)} /> ({rating})
