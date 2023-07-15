@@ -41,3 +41,8 @@ export interface IBookInput {
     price: number;
     synopsis: string;
 }
+
+export interface IAuthInput {
+    email: string;
+    password: string;
+}

@@ -1,6 +1,12 @@
-import { ThemeProvider, useTheme } from '@material-tailwind/react';
-import { RouterProvider } from 'react-router-dom';
 import routes from './routes';
+import { useEffect } from 'react';
+import { auth } from './utils/firebase';
+import { useAppDispatch } from './redux/hooks';
+import { RouterProvider } from 'react-router-dom';
+import { onAuthStateChanged } from 'firebase/auth';
+import { ThemeProvider, useTheme } from '@material-tailwind/react';
+import { setLoading, setUser } from './redux/features/users/userSlice';
+import { Toaster } from 'react-hot-toast';
 
 export default function App() {
     const theme = {
@@ -98,12 +104,42 @@ export default function App() {
             },
         },
         card: { styles: { variants: { filled: { white: { backgroud: 'border', color: '' } } } } },
+        spinner: { styles: { base: { color: '' }, colors: { blue: { color: 'text-primary' } } } },
     };
     console.log(useTheme());
+
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        dispatch(setLoading(true));
+
+        onAuthStateChanged(auth, user => {
+            if (user) {
+                dispatch(setUser(user.email!));
+                dispatch(setLoading(false));
+            } else {
+                dispatch(setLoading(false));
+            }
+        });
+    }, [dispatch]);
 
     return (
         <ThemeProvider value={theme}>
             <RouterProvider router={routes} />
+            <Toaster
+                toastOptions={{
+                    success: {
+                        style: {
+                            background: 'green',
+                        },
+                    },
+                    error: {
+                        style: {
+                            background: 'red',
+                        },
+                    },
+                }}
+            />
         </ThemeProvider>
     );
 }
