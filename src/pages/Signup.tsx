@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AuthContainer from '@/layouts/AuthContainer';
 import { Button, Input, Spinner } from '@material-tailwind/react';
 import Logo from '@/assets/logo.png';
@@ -10,6 +10,8 @@ import toast from 'react-hot-toast';
 import { IAuthInput } from '@/types';
 
 export default function Signup() {
+    const navigate = useNavigate();
+
     const { register, handleSubmit } = useForm<IAuthInput>();
 
     const { isLoading, isError, error, user } = useAppSelector(state => state.user);
@@ -22,10 +24,10 @@ export default function Signup() {
     useEffect(() => {
         if (isError) {
             toast.error(error || 'Something Error!');
-        } else if (user?.email) {
-            toast.success('Signup Successful');
+        } else if (user.email && !isLoading) {
+            navigate('/');
         }
-    }, [error, isError, user?.email]);
+    }, [user.email, isLoading, isError, error, navigate]);
 
     return (
         <AuthContainer>

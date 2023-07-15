@@ -1,10 +1,13 @@
 import { useParams } from 'react-router-dom';
 import SectionHeader from '@/components/Common/SectionHeader';
 import { useSingleBookQuery } from '@/redux/features/books/bookApi';
+import EditBook from '@/components/Common/EditBook';
+import { useAppSelector } from '@/redux/hooks';
 
 export default function BookDetails() {
     const { id } = useParams();
     const { data, isLoading } = useSingleBookQuery(id);
+    const { user } = useAppSelector(state => state.user);
 
     return (
         <>
@@ -33,6 +36,7 @@ export default function BookDetails() {
                     </>
                 )}
             </section>
+            {user?.email && user?.email === data?.data?.publisher?.email && <EditBook id={data?.data?._id} />}
         </>
     );
 }

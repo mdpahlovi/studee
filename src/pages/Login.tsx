@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AuthContainer from '@/layouts/AuthContainer';
 import { Button, Input, Spinner } from '@material-tailwind/react';
 import Logo from '@/assets/logo.png';
@@ -12,6 +12,7 @@ import  toast  from 'react-hot-toast';
 import { loginUser } from '@/redux/features/users/userSlice';
 
 export default function Login() {
+    const navigate = useNavigate();
 
     const { register, handleSubmit } = useForm<IAuthInput>();
 
@@ -22,14 +23,14 @@ export default function Login() {
         dispatch(loginUser(data));
     };
 
-   useEffect(() => {
+    useEffect(() => {
         if(isError){
             toast.error(error || 'Something Error!')
-        }else if (user?.email) {
-            toast.success('Login Successful');
-        } 
-   }, [error, isError, user?.email])
-   
+        }
+        else if (user.email && !isLoading) {
+            navigate('/');
+        }
+    }, [user.email, isLoading, isError, error, navigate]);
 
     return (
         <AuthContainer>

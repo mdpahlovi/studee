@@ -105,6 +105,14 @@ export default function App() {
         },
         card: { styles: { variants: { filled: { white: { backgroud: 'border', color: '' } } } } },
         spinner: { styles: { base: { color: '' }, colors: { blue: { color: 'text-primary' } } } },
+        speedDialAction: {
+            styles: {
+                backgroundColor: 'bg-background',
+                borderColor: '',
+                borderWidth: 'border',
+                fontFamily: '',
+            },
+        },
     };
     console.log(useTheme());
 
