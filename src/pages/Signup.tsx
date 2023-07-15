@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import AuthContainer from '@/layouts/AuthContainer';
 import { Button, Input, Spinner } from '@material-tailwind/react';
 import Logo from '@/assets/logo.png';
@@ -11,6 +11,8 @@ import { IAuthInput } from '@/types';
 
 export default function Signup() {
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location?.state?.path || '/';
 
     const { register, handleSubmit } = useForm<IAuthInput>();
 
@@ -25,9 +27,9 @@ export default function Signup() {
         if (isError) {
             toast.error(error || 'Something Error!');
         } else if (user.email && !isLoading) {
-            navigate('/');
+            navigate(from, { replace: true });
         }
-    }, [user.email, isLoading, isError, error, navigate]);
+    }, [user.email, isLoading, isError, error, navigate, from]);
 
     return (
         <AuthContainer>
@@ -48,9 +50,12 @@ export default function Signup() {
                         'Signup'
                     )}
                 </Button>
-                <Link to="/login" className="block hover:underline hover:text-primary">
+                <button
+                    onClick={() => navigate('/login', { state: { path: from }, replace: true })}
+                    className="block hover:underline hover:text-primary"
+                >
                     Login to your account
-                </Link>
+                </button>
             </form>
         </AuthContainer>
     );

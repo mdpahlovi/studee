@@ -5,9 +5,12 @@ import { IBook } from '@/types';
 import { Button, Input } from '@material-tailwind/react';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { Link } from 'react-router-dom';
+import { useAppSelector } from '@/redux/hooks';
 
 export default function AllBooks() {
     const { data, isLoading } = useGetBooksQuery(undefined);
+    const { user } = useAppSelector(state => state.user);
+
     return (
         <>
             <div className="bg-primary py-20">
@@ -18,9 +21,11 @@ export default function AllBooks() {
                     <div>
                         <Input label="Search" icon={<MagnifyingGlassIcon className="w-5 h-5" />} />
                     </div>
-                    <Link to="/add-book">
-                        <Button>Add New</Button>
-                    </Link>
+                    {user?.email && (
+                        <Link to="/add-book">
+                            <Button>Add New</Button>
+                        </Link>
+                    )}
                 </div>
                 {isLoading ? (
                     <div>Loading...</div>

@@ -4,9 +4,11 @@ import { CgClose, CgMenuRight } from 'react-icons/cg';
 import { Collapse, IconButton, Navbar as MTNavbar } from '@material-tailwind/react';
 import Logo from '@/assets/logo.png';
 import AuthButton from './AuthButton';
+import { useAppSelector } from '@/redux/hooks';
 
 export default function Navbar() {
     const [openNav, setOpenNav] = useState(false);
+    const { user } = useAppSelector(state => state.user);
 
     useEffect(() => {
         window.addEventListener('resize', () => window.innerWidth >= 960 && setOpenNav(false));
@@ -21,9 +23,11 @@ export default function Navbar() {
             <NavLink to="/all-books" className={navLink}>
                 All Books
             </NavLink>
-            <NavLink to="/add-book" className={navLink}>
-                Add Book
-            </NavLink>
+            {user?.email && (
+                <NavLink to="/add-book" className={navLink}>
+                    Add Book
+                </NavLink>
+            )}
         </div>
     );
 

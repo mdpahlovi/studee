@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import AuthContainer from '@/layouts/AuthContainer';
 import { Button, Input, Spinner } from '@material-tailwind/react';
 import Logo from '@/assets/logo.png';
@@ -8,15 +8,17 @@ import Google from '@/assets/icon/google.png';
 import { IAuthInput } from '@/types';
 import { useForm } from 'react-hook-form';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import  toast  from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { loginUser } from '@/redux/features/users/userSlice';
 
 export default function Login() {
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location?.state?.path || '/';
 
     const { register, handleSubmit } = useForm<IAuthInput>();
 
-    const { isLoading, isError, error ,user} = useAppSelector(state => state.user);
+    const { isLoading, isError, error, user } = useAppSelector(state => state.user);
     const dispatch = useAppDispatch();
 
     const handleLogin = (data: IAuthInput) => {
@@ -24,13 +26,12 @@ export default function Login() {
     };
 
     useEffect(() => {
-        if(isError){
-            toast.error(error || 'Something Error!')
+        if (isError) {
+            toast.error(error || 'Something Error!');
+        } else if (user.email && !isLoading) {
+            navigate(from, { replace: true });
         }
-        else if (user.email && !isLoading) {
-            navigate('/');
-        }
-    }, [user.email, isLoading, isError, error, navigate]);
+    }, [user.email, isLoading, isError, error, navigate, from]);
 
     return (
         <AuthContainer>
@@ -49,7 +50,7 @@ export default function Login() {
                 </Button>
             </div>
             <form onSubmit={handleSubmit(handleLogin)} className="space-y-8">
-                <Input variant="standard" label="Your Email" {...register('email' )} />
+                <Input variant="standard" label="Your Email" {...register('email')} />
                 <Input variant="standard" label="Your Password" {...register('password')} />
                 <Button type="submit" fullWidth className="flex justify-center items-end gap-2" disabled={isLoading}>
                     {isLoading ? (
@@ -60,9 +61,12 @@ export default function Login() {
                         'login'
                     )}
                 </Button>
-                <Link to="/signup" className="block hover:underline hover:text-primary">
+                <button
+                    onClick={() => navigate('/signup', { state: { path: from }, replace: true })}
+                    className="block hover:underline hover:text-primary"
+                >
                     Create new account
-                </Link>
+                </button>
             </form>
         </AuthContainer>
     );

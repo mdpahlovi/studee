@@ -5,7 +5,7 @@ import SectionHeader from "@/components/Common/SectionHeader";
 import { useGetTenBookQuery } from "@/redux/features/books/bookApi";
 
 export default function Home() {
-    const { data, isLoading } = useGetTenBookQuery(undefined);
+    const { data, isLoading } = useGetTenBookQuery(10);
 
     return (
         <>
