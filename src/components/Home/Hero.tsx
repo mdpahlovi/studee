@@ -1,5 +1,5 @@
 import { Button } from '@material-tailwind/react';
-import HeroImage from '../../assets/hero.png';
+import HeroImage from '@/assets/hero.png';
 
 export default function Hero() {
     return (

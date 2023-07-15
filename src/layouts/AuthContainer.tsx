@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
-import Logo from '../assets/logo.png';
+import Logo from '@/assets/logo.png';
 
 export default function AuthContainer({ children }: { children: ReactNode }) {
     return (

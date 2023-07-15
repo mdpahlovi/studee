@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import AuthContainer from '../layouts/AuthContainer';
+import AuthContainer from '@/layouts/AuthContainer';
 import { Button, Input } from '@material-tailwind/react';
-import Logo from '../assets/logo.png';
+import Logo from '@/assets/logo.png';
 
 export default function Signup() {
     return (

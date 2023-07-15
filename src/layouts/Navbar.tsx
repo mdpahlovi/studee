@@ -2,7 +2,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { CgClose, CgMenuRight } from 'react-icons/cg';
 import { Button, Collapse, IconButton, Navbar as MTNavbar } from '@material-tailwind/react';
-import Logo from '../assets/logo.png';
+import Logo from '@/assets/logo.png';
 
 export default function Navbar() {
     const [openNav, setOpenNav] = useState(false);

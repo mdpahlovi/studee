@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Button } from '@material-tailwind/react';
-import ErrorImage from '../assets/icon/404.svg';
+import ErrorImage from '@/assets/icon/404.svg';
 
 export default function NotFound() {
     return (

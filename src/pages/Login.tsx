@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-import AuthContainer from '../layouts/AuthContainer';
+import AuthContainer from '@/layouts/AuthContainer';
 import { Button, Input } from '@material-tailwind/react';
-import Logo from '../assets/logo.png';
-import Github from '../assets/icon/github.png';
-import Google from '../assets/icon/google.png';
+import Logo from '@/assets/logo.png';
+import Github from '@/assets/icon/github.png';
+import Google from '@/assets/icon/google.png';
 
 export default function Login() {
     return (

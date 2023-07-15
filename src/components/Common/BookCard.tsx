@@ -1,4 +1,4 @@
-import { IBook } from '../../types';
+import { IBook } from '@/types';
 import { Link } from 'react-router-dom';
 import { Card, CardHeader, Button } from '@material-tailwind/react';
 import { ArrowLongRightIcon } from '@heroicons/react/24/outline';

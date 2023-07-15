@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
-import SectionHeader from '../components/Common/SectionHeader';
-import { useSingleBookQuery } from '../redux/features/books/bookApi';
+import SectionHeader from '@/components/Common/SectionHeader';
+import { useSingleBookQuery } from '@/redux/features/books/bookApi';
 
 export default function BookDetails() {
     const { id } = useParams();
