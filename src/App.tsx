@@ -113,6 +113,21 @@ export default function App() {
                 fontFamily: '',
             },
         },
+        dialog: {
+            styles: {
+                base: {
+                    container: {
+                        bg: 'bg-background',
+                        color: '',
+                        fontFamily: '',
+                        fontSize: '',
+                        fontSmoothing: '',
+                        fontWeight: '',
+                        lineHeight: '',
+                    },
+                },
+            },
+        },
     };
     console.log(useTheme());
 
