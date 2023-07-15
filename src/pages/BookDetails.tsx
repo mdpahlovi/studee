@@ -3,7 +3,9 @@ import SectionHeader from '@/components/Common/SectionHeader';
 import { useSingleBookQuery } from '@/redux/features/books/bookApi';
 import EditBook from '@/components/Common/EditBook';
 import { useAppSelector } from '@/redux/hooks';
-import { Rating } from '@material-tailwind/react';
+import { Rating, TimelineConnector, TimelineHeader, TimelineIcon, TimelineItem } from '@material-tailwind/react';
+import AddReview from '@/components/Common/AddReview';
+import { IReview } from '@/types';
 
 export default function BookDetails() {
     const { id } = useParams();
@@ -15,13 +17,13 @@ export default function BookDetails() {
             <div className="bg-primary py-20">
                 <SectionHeader>Book Details</SectionHeader>
             </div>
-            <section className="py-20 grid sm:grid-cols-2 lg:grid-cols-[4fr_8fr] gap-8">
+            <section className="py-20">
                 {isLoading ? (
                     <div>Loading</div>
                 ) : (
                     <>
                         <div>
-                            <img src={data?.data?.cover} alt="" className="w-[24rem] rounded-lg" />
+                            <img src={data?.data?.cover} alt="" className="w-[20rem] mb-3.5 float-left mr-8 rounded-lg" />
                         </div>
                         <div className="space-y-4">
                             <p className="text-primary">{data?.data?.genre}</p>
@@ -40,6 +42,23 @@ export default function BookDetails() {
                 )}
             </section>
             {user?.email && user?.email === data?.data?.publisher?.email && <EditBook id={data?.data?._id} />}
+            <section className="mb-20 md:max-w-2xl space-y-10">
+                <SectionHeader>Book Reviews</SectionHeader>
+                {user?.email && <AddReview id={id!} user={user?.email} />}
+                <div>
+                    {data?.data?.reviews.map((review: IReview, idx: number) => (
+                        <TimelineItem key={idx} className="h-max pb-8">
+                            {idx + 1 !== data?.data?.reviews.length && <TimelineConnector className="!w-[78px]" />}
+                            <TimelineHeader className="relative rounded-lg border bg-background py-3 pl-4 pr-8 shadow-lg">
+                                <TimelineIcon variant="ghost">
+                                    <div className="w-4 h-4 flex justify-center items-center text-white">{idx + 1}</div>
+                                </TimelineIcon>
+                                <p>{review?.comment}</p>
+                            </TimelineHeader>
+                        </TimelineItem>
+                    ))}
+                </div>
+            </section>
         </>
     );
 }

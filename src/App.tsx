@@ -144,6 +144,19 @@ export default function App() {
             },
         },
         drawer: { styles: { base: { drawer: { backgroundColor: 'bg-background' } } } },
+        timelineIcon: {
+            styles: {
+                base: { padding: 'p-3.5' },
+                variants: {
+                    ghost: {
+                        blue: {
+                            background: 'bg-primary/10',
+                            color: 'text-primary',
+                        },
+                    },
+                },
+            },
+        },
     };
     console.log(useTheme());
 

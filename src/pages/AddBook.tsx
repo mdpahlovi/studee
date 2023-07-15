@@ -11,7 +11,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 export default function AddBook() {
     const { register, handleSubmit } = useForm<IBookInput>();
     const { user } = useAppSelector(state => state.user);
-    const [postBook, { isLoading, isError, isSuccess, error }] = usePostBookMutation();
+    const [postBook, { isLoading, isError, isSuccess }] = usePostBookMutation();
 
     const handleAddBook: SubmitHandler<IBookInput> = ({ author1, author2, publisherName, publicationYear, rating, price, ...bookData }) => {
         const newBook: IBook = {
@@ -33,8 +33,6 @@ export default function AddBook() {
             toast.error('Something Error!');
         }
     }, [isError, isSuccess]);
-
-    console.log(error);
 
     return (
         <>

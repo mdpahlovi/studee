@@ -13,7 +13,7 @@ export default function EditBook() {
     const { data } = useSingleBookQuery(id);
     const book = data?.data;
     const { register, handleSubmit } = useForm<IBookInput>();
-    const [updateBook, { isLoading, isError, isSuccess, error }] = useUpdateBookMutation();
+    const [updateBook, { isLoading, isError, isSuccess }] = useUpdateBookMutation();
 
     const handleEditBook: SubmitHandler<IBookInput> = ({
         title,
@@ -49,8 +49,6 @@ export default function EditBook() {
             toast.error('Something Error!');
         }
     }, [isError, isSuccess]);
-
-    console.log(error);
 
     return (
         <>
