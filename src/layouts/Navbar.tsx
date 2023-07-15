@@ -1,8 +1,9 @@
 import { Link, NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { CgClose, CgMenuRight } from 'react-icons/cg';
-import { Button, Collapse, IconButton, Navbar as MTNavbar } from '@material-tailwind/react';
+import { Collapse, IconButton, Navbar as MTNavbar } from '@material-tailwind/react';
 import Logo from '@/assets/logo.png';
+import AuthButton from './AuthButton';
 
 export default function Navbar() {
     const [openNav, setOpenNav] = useState(false);
@@ -34,9 +35,7 @@ export default function Navbar() {
                 </Link>
                 <div className="flex items-center gap-4">
                     <div className="mr-4 hidden lg:block">{NavList}</div>
-                    <Link to="/login" className="hidden lg:block">
-                        <Button size="sm">Login / Signup</Button>
-                    </Link>
+                    <AuthButton className="hidden lg:block" />
                     <IconButton ripple={false} onClick={() => setOpenNav(!openNav)} className="lg:hidden">
                         {openNav ? <CgClose size={20} /> : <CgMenuRight size={20} />}
                     </IconButton>
@@ -44,9 +43,7 @@ export default function Navbar() {
             </section>
             <Collapse open={openNav}>
                 {NavList}
-                <Link to="/login" className="block mb-1.5">
-                    <Button size="sm">Login / Signup</Button>
-                </Link>
+                <AuthButton className="mb-1.5" />
             </Collapse>
         </MTNavbar>
     );

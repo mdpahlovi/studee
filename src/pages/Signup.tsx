@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import AuthContainer from '@/layouts/AuthContainer';
 import { Button, Input, Spinner } from '@material-tailwind/react';
@@ -11,16 +12,20 @@ import { IAuthInput } from '@/types';
 export default function Signup() {
     const { register, handleSubmit } = useForm<IAuthInput>();
 
-    const { isLoading, isError, error } = useAppSelector(state => state.user);
+    const { isLoading, isError, error, user } = useAppSelector(state => state.user);
     const dispatch = useAppDispatch();
 
     const handleSignup = (data: IAuthInput) => {
         dispatch(createUser(data));
     };
 
-    if (isError) {
-        toast.error(error || 'Something Error!');
-    }
+    useEffect(() => {
+        if (isError) {
+            toast.error(error || 'Something Error!');
+        } else if (user?.email) {
+            toast.success('Signup Successful');
+        }
+    }, [error, isError, user?.email]);
 
     return (
         <AuthContainer>

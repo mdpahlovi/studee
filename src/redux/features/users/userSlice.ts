@@ -1,21 +1,8 @@
+import { ICredential, IUserState } from '@/types';
 import { auth } from '@/utils/firebase';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-
-interface IUserState {
-    user: {
-        email: string | null;
-    };
-    isLoading: boolean;
-    isError: boolean;
-    error: string | null;
-}
-
-interface ICredential {
-    email: string;
-    password: string;
-}
 
 const initialState: IUserState = {
     user: {

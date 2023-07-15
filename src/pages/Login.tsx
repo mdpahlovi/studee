@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import AuthContainer from '@/layouts/AuthContainer';
 import { Button, Input, Spinner } from '@material-tailwind/react';
@@ -14,16 +15,21 @@ export default function Login() {
 
     const { register, handleSubmit } = useForm<IAuthInput>();
 
-    const { isLoading, isError, error } = useAppSelector(state => state.user);
+    const { isLoading, isError, error ,user} = useAppSelector(state => state.user);
     const dispatch = useAppDispatch();
 
     const handleLogin = (data: IAuthInput) => {
         dispatch(loginUser(data));
     };
 
-    if(isError){
-        toast.error(error || 'Something Error!')
-    }
+   useEffect(() => {
+        if(isError){
+            toast.error(error || 'Something Error!')
+        }else if (user?.email) {
+            toast.success('Login Successful');
+        } 
+   }, [error, isError, user?.email])
+   
 
     return (
         <AuthContainer>
