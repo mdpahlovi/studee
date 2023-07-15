@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from 'react';
 import BookCard from '@/components/Common/BookCard';
 import SectionHeader from '@/components/Common/SectionHeader';
@@ -14,6 +15,17 @@ export default function AllBooks() {
     const [open, setOpen] = useState(false);
     const { data, isLoading } = useGetBooksQuery(query, { refetchOnMountOrArgChange: true });
     const { user } = useAppSelector(state => state.user);
+    const { genres, publicationYears } = useAppSelector(state => state.book);
+    console.log(genres, publicationYears);
+
+    let books;
+    if (genres?.length !== 0) {
+        books = data?.data?.filter((book: { genre: string }) => genres?.includes(book?.genre));
+    } else if (publicationYears?.length !== 0) {
+        books = data?.data?.filter((book: { publicationYear: number }) => publicationYears?.includes(book?.publicationYear));
+    } else {
+        books = data?.data;
+    }
 
     return (
         <>
@@ -44,7 +56,7 @@ export default function AllBooks() {
                     <div>Loading...</div>
                 ) : (
                     <div className="grid lg:grid-cols-2 gap-6">
-                        {data?.data?.map((book: IBook) => (
+                        {books?.map((book: IBook) => (
                             <BookCard key={book._id} book={book} />
                         ))}
                     </div>

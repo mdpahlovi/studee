@@ -157,6 +157,17 @@ export default function App() {
                 },
             },
         },
+        checkbox: {
+            styles: {
+                colors: {
+                    brown: {
+                        background: 'checked:bg-secondary/30',
+                        before: 'checked:before:bg-secondary/30',
+                        border: 'checked:border-secondary/30',
+                    },
+                },
+            },
+        },
     };
     console.log(useTheme());
 
