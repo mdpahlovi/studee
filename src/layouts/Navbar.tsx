@@ -28,6 +28,9 @@ export default function Navbar() {
                     <NavLink to="/add-book" className={navLink}>
                         Add Book
                     </NavLink>
+                    <NavLink to="/wishlist" className={navLink}>
+                        Wishlist
+                    </NavLink>
                     <NavLink to="/readlist" className={navLink}>
                         Readlist
                     </NavLink>
