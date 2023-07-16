@@ -1,3 +1,4 @@
+import ReadListCard from '@/components/Common/ReadListCard';
 import SectionHeader from '@/components/Common/SectionHeader';
 import { useGetReadlistsQuery } from '@/redux/features/readlist/readlistApi';
 import { useAppSelector } from '@/redux/hooks';
@@ -16,9 +17,9 @@ export default function Readlist() {
                 {!user?.email || isLoading ? (
                     <div>loading</div>
                 ) : (
-                    <div>
+                    <div className="grid lg:grid-cols-2 gap-6">
                         {data?.data?.map((readlist: IReadlist) => (
-                            <div key={readlist?.book?._id}>{readlist?.book?.title}</div>
+                            <ReadListCard key={readlist?._id} readlist={readlist} />
                         ))}
                     </div>
                 )}

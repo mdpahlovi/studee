@@ -16,7 +16,6 @@ export default function AllBooks() {
     const { data, isLoading } = useGetBooksQuery(query, { refetchOnMountOrArgChange: true });
     const { user } = useAppSelector(state => state.user);
     const { genres, publicationYears } = useAppSelector(state => state.book);
-    console.log(genres, publicationYears);
 
     let books;
     if (genres?.length !== 0) {

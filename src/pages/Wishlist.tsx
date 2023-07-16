@@ -10,12 +10,10 @@ export default function Wishlist() {
     const { data, isLoading } = useGetBooksQuery('');
     const { books } = useAppSelector(state => state.wishlist);
     const bookIds = books?.map(book => book?.book);
-    console.log(data);
 
     let wishlistBooks;
     if (!isLoading) {
         wishlistBooks = data?.data?.filter((book: { _id: string }) => bookIds?.includes(book?._id));
-        console.log(wishlistBooks);
     }
 
     return (

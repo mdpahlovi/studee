@@ -63,7 +63,7 @@ export interface ICredential {
 }
 
 export interface IReadlist {
-    _id: string;
+    _id?: string;
     user: string;
     book: IBook;
     planToRead: boolean;
