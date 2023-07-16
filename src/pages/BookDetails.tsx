@@ -17,7 +17,7 @@ export default function BookDetails() {
 
     let date;
     if (!isLoading) {
-        date = format(parseISO(data?.data?.createdAt), 'PPP');
+        date = format(parseISO(data?.data?.publicationDate), 'PPP');
     }
 
     return (

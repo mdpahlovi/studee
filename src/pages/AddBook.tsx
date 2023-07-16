@@ -11,12 +11,13 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 export default function AddBook() {
     const { register, handleSubmit } = useForm<IBookInput>();
     const { user } = useAppSelector(state => state.user);
-    const [postBook, { isLoading, isError, isSuccess }] = usePostBookMutation();
+    const [postBook, { isLoading, isError, isSuccess, error }] = usePostBookMutation();
 
-    const handleAddBook: SubmitHandler<IBookInput> = ({ author1, author2, publisherName, publicationYear, rating, price, ...bookData }) => {
+    console.log(error);
+
+    const handleAddBook: SubmitHandler<IBookInput> = ({ author1, author2, publisherName, rating, price, ...bookData }) => {
         const newBook: IBook = {
             author: [author1, author2],
-            publicationYear: Number(publicationYear),
             publisher: { name: publisherName, email: user?.email! },
             reviews: [],
             rating: Number(rating),
@@ -54,7 +55,7 @@ export default function AddBook() {
                         <Input variant="standard" label="Author 2" {...register('author2')} />
                     </div>
                     <div className="grid sm:grid-cols-2 gap-8">
-                        <Input type="number" variant="standard" label="Publication Year" {...register('publicationYear')} />
+                        <Input type="date" variant="standard" label="Publication Year" {...register('publicationDate')} />
                         <Input variant="standard" label="Publisher Name" {...register('publisherName')} />
                     </div>
                     <div className="grid sm:grid-cols-2 gap-8">

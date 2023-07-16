@@ -3,7 +3,7 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 
 interface IBook {
     genres: string[];
-    publicationYears: number[];
+    publicationYears: string[];
 }
 
 const initialState: IBook = {
@@ -24,7 +24,7 @@ const bookSlice = createSlice({
                 state.genres.push(action.payload);
             }
         },
-        setPublicationYear: (state, action: PayloadAction<number>) => {
+        setPublicationYear: (state, action: PayloadAction<string>) => {
             const isExist = state.publicationYears.find(year => year === action.payload);
 
             if (isExist) {

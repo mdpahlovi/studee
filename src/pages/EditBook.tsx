@@ -7,6 +7,7 @@ import { Button, Input, Spinner, Textarea } from '@material-tailwind/react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import { useSingleBookQuery, useUpdateBookMutation } from '@/redux/features/books/bookApi';
+import { format, parseISO } from 'date-fns';
 
 export default function EditBook() {
     const { id } = useParams();
@@ -21,7 +22,7 @@ export default function EditBook() {
         author1,
         author2,
         genre,
-        publicationYear,
+        publicationDate,
         publisherName,
         rating,
         price,
@@ -32,13 +33,12 @@ export default function EditBook() {
             cover: cover ? cover : book?.cover,
             author: author1 || author2 ? [author1, author2] : book?.author,
             genre: genre ? genre : book?.genre,
-            publicationYear: publicationYear ? Number(publicationYear) : Number(book?.publicationYear),
+            publicationDate: publicationDate ? publicationDate : book?.publicationDate,
             publisher: publisherName ? { name: publisherName } : book?.publisher,
             rating: rating ? Number(rating) : Number(book?.rating),
             price: price ? Number(price) : Number(book?.price),
             synopsis: synopsis ? synopsis : book?.synopsis,
         };
-
         updateBook({ id, ...updatedBook });
     };
 
@@ -71,11 +71,11 @@ export default function EditBook() {
                     </div>
                     <div className="grid sm:grid-cols-2 gap-8">
                         <Input
-                            type="number"
+                            type="date"
                             variant="standard"
                             label="Publication Year"
-                            {...register('publicationYear')}
-                            defaultValue={data?.data?.publicationYear}
+                            {...register('publicationDate')}
+                            defaultValue={format(parseISO(data?.data?.publicationDate), 'yyyy-MM-dd')}
                         />
                         <Input
                             variant="standard"

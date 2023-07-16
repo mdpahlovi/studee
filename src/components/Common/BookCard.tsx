@@ -8,8 +8,8 @@ import AddToWishlist from './AddToWishList';
 
 export default function BookCard({ book }: { book: IBook }) {
     const { user } = useAppSelector(state => state.user);
-    const { _id, cover, genre, title, synopsis, author, createdAt, price, rating } = book;
-    const date = format(parseISO(createdAt!), 'PPP');
+    const { _id, cover, genre, title, synopsis, author, publicationDate, price, rating } = book;
+    const date = format(parseISO(publicationDate as string), 'PPP');
 
     return (
         <Card className="sm:flex-row w-full">

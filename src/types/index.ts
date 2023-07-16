@@ -14,13 +14,12 @@ export interface IBook {
     cover: string;
     author: string[];
     genre: string;
-    publicationYear: number;
+    publicationDate: Date | string;
     publisher: IPublisher;
     reviews: IReview[];
     rating: number;
     price: number;
     synopsis: string;
-    createdAt?: string;
 }
 
 export interface IApiResponse<T> {
@@ -36,7 +35,7 @@ export interface IBookInput {
     author1: string;
     author2: string;
     genre: string;
-    publicationYear: number;
+    publicationDate: Date;
     publisherName: string;
     rating: number;
     price: number;

@@ -9,6 +9,7 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '@/redux/hooks';
 import FilterBookDrawer from '@/components/Common/FilterBookDrawer';
+import { format, parseISO } from 'date-fns';
 
 export default function AllBooks() {
     const [query, setQuery] = useState('');
@@ -21,7 +22,9 @@ export default function AllBooks() {
     if (genres?.length !== 0) {
         books = data?.data?.filter((book: { genre: string }) => genres?.includes(book?.genre));
     } else if (publicationYears?.length !== 0) {
-        books = data?.data?.filter((book: { publicationYear: number }) => publicationYears?.includes(book?.publicationYear));
+        books = data?.data?.filter((book: { publicationDate: string }) =>
+            publicationYears?.includes(format(parseISO(book?.publicationDate), 'yyyy'))
+        );
     } else {
         books = data?.data;
     }

@@ -7,8 +7,10 @@ interface IWishlists {
     books: IWishlist[];
 }
 
+const initialWishList = localStorage.getItem('wishlist') !== null ? JSON.parse(localStorage.getItem('wishlist')!) : [];
+
 const initialState: IWishlists = {
-    books: [],
+    books: initialWishList,
 };
 
 const wishlistSlice = createSlice({
@@ -22,6 +24,7 @@ const wishlistSlice = createSlice({
             } else {
                 state.books.push({ book: action?.payload, quantity: 1 });
             }
+            localStorage.setItem('wishlist', JSON.stringify(state?.books));
         },
         removeOne: (state, action: PayloadAction<string>) => {
             const isExist = state.books.find(book => book?.book === action.payload);
@@ -30,9 +33,11 @@ const wishlistSlice = createSlice({
             } else {
                 state.books = state.books.filter(book => book?.book !== action.payload);
             }
+            localStorage.setItem('wishlist', JSON.stringify(state?.books));
         },
         removeFromWishlist: (state, action: PayloadAction<string>) => {
             state.books = state.books.filter(book => book?.book !== action.payload);
+            localStorage.setItem('wishlist', JSON.stringify(state?.books));
         },
     },
 });
