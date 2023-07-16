@@ -1,12 +1,14 @@
 import { IBook } from '@/types';
 import { Link } from 'react-router-dom';
 import { Card, CardHeader, Button, Rating } from '@material-tailwind/react';
-import { ArrowLongRightIcon } from '@heroicons/react/24/outline';
 import { format, parseISO } from 'date-fns';
+import AddToReadlist from './AddToReadlist';
+import { useAppSelector } from '@/redux/hooks';
 
 export default function BookCard({ book }: { book: IBook }) {
+    const { user } = useAppSelector(state => state.user);
     const { _id, cover, genre, title, synopsis, author, createdAt, price, rating } = book;
-    const date = format(parseISO(createdAt), 'PPP');
+    const date = format(parseISO(createdAt!), 'PPP');
 
     return (
         <Card className="sm:flex-row w-full">
@@ -25,12 +27,12 @@ export default function BookCard({ book }: { book: IBook }) {
                         Rating : <Rating value={Math.round(rating)} /> ({rating})
                     </p>
                 </div>
-                <Link to={`/book/${_id}`}>
-                    <Button className="mt-2 flex items-center gap-2">
-                        View More
-                        <ArrowLongRightIcon strokeWidth={2} className="w-4 h-4" />
-                    </Button>
-                </Link>
+                <div className="flex items-center gap-4 mt-2">
+                    <Link to={`/book/${_id}`}>
+                        <Button size="sm">Details</Button>
+                    </Link>
+                    {user?.email && <AddToReadlist user={user?.email} book={_id!} />}
+                </div>
             </div>
         </Card>
     );

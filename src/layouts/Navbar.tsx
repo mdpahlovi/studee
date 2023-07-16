@@ -24,9 +24,14 @@ export default function Navbar() {
                 All Books
             </NavLink>
             {user?.email && (
-                <NavLink to="/add-book" className={navLink}>
-                    Add Book
-                </NavLink>
+                <>
+                    <NavLink to="/add-book" className={navLink}>
+                        Add Book
+                    </NavLink>
+                    <NavLink to="/readlist" className={navLink}>
+                        Readlist
+                    </NavLink>
+                </>
             )}
         </div>
     );

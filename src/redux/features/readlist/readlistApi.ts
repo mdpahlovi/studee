@@ -11,11 +11,7 @@ const readlistApi = api.injectEndpoints({
             invalidatesTags: ['readlist'],
         }),
         getReadlists: builder.query({
-            query: ids => ({
-                url: `/readlist`,
-                method: 'GET',
-                body: ids,
-            }),
+            query: email => `/readlist/${email}`,
             providesTags: ['readlist'],
         }),
         updateReadlist: builder.mutation({

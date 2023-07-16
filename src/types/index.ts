@@ -20,7 +20,7 @@ export interface IBook {
     rating: number;
     price: number;
     synopsis: string;
-    createdAt: string;
+    createdAt?: string;
 }
 
 export interface IApiResponse<T> {
@@ -60,4 +60,13 @@ export interface IUserState {
 export interface ICredential {
     email: string;
     password: string;
+}
+
+export interface IReadlist {
+    _id: string;
+    user: string;
+    book: IBook;
+    planToRead: boolean;
+    isReading: boolean;
+    isFinished: boolean;
 }

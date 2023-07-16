@@ -119,7 +119,7 @@ export default function App() {
             },
         },
         card: { styles: { variants: { filled: { white: { backgroud: 'border', color: '' } } } } },
-        spinner: { styles: { base: { color: '' }, colors: { blue: { color: 'text-primary' } } } },
+        spinner: { styles: { base: { color: '' }, colors: { blue: { color: 'text-primary' }, orange: { color: 'text-secondary' } } } },
         speedDialAction: {
             styles: {
                 backgroundColor: 'bg-background',
