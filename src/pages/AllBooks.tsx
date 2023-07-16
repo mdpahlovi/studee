@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from 'react';
 import BookCard from '@/components/Common/BookCard';
 import SectionHeader from '@/components/Common/SectionHeader';

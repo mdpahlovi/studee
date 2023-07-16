@@ -11,7 +11,7 @@ export default function FilterBookDrawer({ open, setOpen }: { open: boolean; set
         dispatch(setGenre(value));
     };
 
-    const handleSetYear = (value: number) => {
+    const handleSetYear = (value: string) => {
         dispatch(setPublicationYear(value));
     };
 

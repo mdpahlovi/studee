@@ -1,5 +1,3 @@
-/* eslint-disable prefer-const */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import SectionHeader from '@/components/Common/SectionHeader';
 import WishlistCard from '@/components/Common/WishlistCard';
 import { useGetBooksQuery } from '@/redux/features/books/bookApi';

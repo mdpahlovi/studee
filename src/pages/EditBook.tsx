@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 import { useEffect } from 'react';
 import toast from 'react-hot-toast';
 import SectionHeader from '@/components/Common/SectionHeader';
