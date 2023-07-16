@@ -70,3 +70,8 @@ export interface IReadlist {
     isReading: boolean;
     isFinished: boolean;
 }
+
+export interface IWishlist {
+    book: string;
+    quantity?: number;
+}

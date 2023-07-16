@@ -2,6 +2,7 @@ import { usePostReadlistMutation } from '@/redux/features/readlist/readlistApi';
 import { Button, Spinner } from '@material-tailwind/react';
 import { useEffect } from 'react';
 import toast from 'react-hot-toast';
+import { ClipboardDocumentListIcon } from '@heroicons/react/24/solid';
 
 export default function AddToReadlist({ user, book }: { user: string; book: string }) {
     const [postReadlist, { isLoading, isError, isSuccess }] = usePostReadlistMutation();
@@ -19,13 +20,16 @@ export default function AddToReadlist({ user, book }: { user: string; book: stri
     };
 
     return (
-        <Button size="sm" color="orange" onClick={handleAdd} className="flex justify-center items-end gap-2" disabled={isLoading}>
+        <Button size="sm" color="orange" onClick={handleAdd} className="flex justify-center items-center gap-1" disabled={isLoading}>
             {isLoading ? (
                 <>
                     <Spinner color="orange" /> Loading...
                 </>
             ) : (
-                'AddToReadlist'
+                <>
+                    Readlist
+                    <ClipboardDocumentListIcon className="w-4 h-4" />
+                </>
             )}
         </Button>
     );

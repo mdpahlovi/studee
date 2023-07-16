@@ -4,6 +4,7 @@ import { Card, CardHeader, Button, Rating } from '@material-tailwind/react';
 import { format, parseISO } from 'date-fns';
 import AddToReadlist from './AddToReadlist';
 import { useAppSelector } from '@/redux/hooks';
+import AddToWishlist from './AddToWishList';
 
 export default function BookCard({ book }: { book: IBook }) {
     const { user } = useAppSelector(state => state.user);
@@ -27,12 +28,15 @@ export default function BookCard({ book }: { book: IBook }) {
                         Rating : <Rating value={Math.round(rating)} /> ({rating})
                     </p>
                 </div>
-                <div className="flex items-center gap-4 mt-2">
-                    <Link to={`/book/${_id}`}>
-                        <Button size="sm">Details</Button>
-                    </Link>
-                    {user?.email && <AddToReadlist user={user?.email} book={_id!} />}
-                </div>
+                <Link to={`/book/${_id}`} className="mt-2">
+                    <Button size="sm">Details</Button>
+                </Link>
+                {user?.email && (
+                    <div className="flex gap-4 mt-2">
+                        <AddToWishlist book={_id!} />
+                        <AddToReadlist user={user?.email} book={_id!} />
+                    </div>
+                )}
             </div>
         </Card>
     );

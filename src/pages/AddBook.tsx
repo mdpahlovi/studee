@@ -62,7 +62,7 @@ export default function AddBook() {
                         <Input type="number" variant="standard" label="Price" {...register('price')} />
                     </div>
                     <Textarea variant="standard" label="Synopsis" {...register('synopsis')} />
-                    <Button type="submit" fullWidth className="flex justify-center items-end gap-2" disabled={isLoading}>
+                    <Button type="submit" fullWidth className="flex justify-center items-center gap-1" disabled={isLoading}>
                         {isLoading ? (
                             <>
                                 <Spinner /> Loading...

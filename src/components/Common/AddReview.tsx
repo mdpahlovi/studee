@@ -28,7 +28,7 @@ export default function AddReview({ id, user }: { id: string; user: string }) {
                 size="sm"
                 disabled={!comment || isLoading}
                 onClick={handleComment}
-                className="!absolute right-1 top-1 flex justify-center items-end gap-2"
+                className="!absolute right-1 top-1 flex justify-center items-center gap-1"
             >
                 {isLoading ? (
                     <>

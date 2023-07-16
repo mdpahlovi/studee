@@ -41,7 +41,7 @@ export default function Signup() {
                 <Input variant="standard" label="Your Name" />
                 <Input variant="standard" label="Your Email" {...register('email')} />
                 <Input variant="standard" label="Your Password" {...register('password')} />
-                <Button type="submit" fullWidth className="flex justify-center items-end gap-2" disabled={isLoading}>
+                <Button type="submit" fullWidth className="flex justify-center items-center gap-1" disabled={isLoading}>
                     {isLoading ? (
                         <>
                             <Spinner /> Loading...

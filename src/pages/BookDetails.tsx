@@ -8,6 +8,7 @@ import AddReview from '@/components/Common/AddReview';
 import { IReview } from '@/types';
 import { format, parseISO } from 'date-fns';
 import AddToReadlist from '@/components/Common/AddToReadlist';
+import AddToWishlist from '@/components/Common/AddToWishList';
 
 export default function BookDetails() {
     const { id } = useParams();
@@ -33,7 +34,12 @@ export default function BookDetails() {
                             <img src={data?.data?.cover} alt="" className="w-[20rem] mb-3.5 float-left mr-8 rounded-lg" />
                         </div>
                         <div className="space-y-4">
-                            {user?.email && <AddToReadlist user={user?.email} book={id!} />}
+                            {user?.email && (
+                                <div className="flex gap-4 mt-2">
+                                    <AddToWishlist book={id!} />
+                                    <AddToReadlist user={user?.email} book={id!} />
+                                </div>
+                            )}
                             <p className="text-primary">{data?.data?.genre}</p>
                             <h3>{data?.data?.title}</h3>
                             <div>

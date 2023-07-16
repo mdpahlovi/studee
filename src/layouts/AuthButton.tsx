@@ -19,7 +19,7 @@ export default function AuthButton({ className }: { className: string }) {
     return (
         <div className={className}>
             {isLoading ? (
-                <Button size="sm" disabled={isLoading} className="flex justify-center items-end gap-2">
+                <Button size="sm" disabled={isLoading} className="flex justify-center items-center gap-1">
                     <Spinner /> Loading...
                 </Button>
             ) : user?.email ? (

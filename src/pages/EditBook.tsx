@@ -96,7 +96,7 @@ export default function EditBook() {
                         <Input type="number" variant="standard" label="Price" {...register('price')} defaultValue={data?.data?.price} />
                     </div>
                     <Textarea variant="standard" label="Synopsis" {...register('synopsis')} defaultValue={data?.data?.synopsis} />
-                    <Button type="submit" fullWidth className="flex justify-center items-end gap-2" disabled={isLoading}>
+                    <Button type="submit" fullWidth className="flex justify-center items-center gap-1" disabled={isLoading}>
                         {isLoading ? (
                             <>
                                 <Spinner /> Loading...
