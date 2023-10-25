@@ -14,11 +14,13 @@ export default function Readlist() {
                 <SectionHeader>Readlists</SectionHeader>
             </div>
             <section className="my-16 sm:my-20">
-                {!user?.email || isLoading ? (
-                    <div>loading</div>
+                {isLoading ? (
+                    <div>Loading...</div>
+                ) : data?.data?.length === 0 ? (
+                    <div>No Readlist Data</div>
                 ) : (
                     <div className="grid lg:grid-cols-2 gap-6">
-                        {data?.data?.map((readlist: IReadlist) => (
+                        {data.data.map((readlist: IReadlist) => (
                             <ReadListCard key={readlist?._id} readlist={readlist} />
                         ))}
                     </div>

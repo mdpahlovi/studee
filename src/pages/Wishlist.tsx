@@ -17,14 +17,16 @@ export default function Wishlist() {
     return (
         <>
             <div className="bg-primary py-20">
-                <SectionHeader>Readlists</SectionHeader>
+                <SectionHeader>Wishlists</SectionHeader>
             </div>
             <section className="my-16 lg:my-20">
                 {isLoading ? (
-                    <div>loading</div>
+                    <div>Loading...</div>
+                ) : wishlistBooks?.length === 0 ? (
+                    <div>No Wishlist Data</div>
                 ) : (
                     <div className="grid lg:grid-cols-2 gap-6">
-                        {wishlistBooks?.map((book: IBook) => (
+                        {wishlistBooks.map((book: IBook) => (
                             <WishlistCard key={book?._id} book={book} />
                         ))}
                     </div>
